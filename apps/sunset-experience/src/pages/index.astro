@@ -1,0 +1,28 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SiteNav from "@/components/SiteNav.astro";
+import Hero from "@/components/Hero.astro";
+import Concept from "@/components/Concept.astro";
+import Timeline from "@/components/Timeline.astro";
+import Manifesto from "@/components/Manifesto.astro";
+import AccessTiles from "@/components/AccessTiles.astro";
+import ContactCard from "@/components/ContactCard.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+
+const CONTACT_EMAIL = "produccionculturapopular@gmail.com";
+---
+<BaseLayout
+  title="Sunset Experience — Cinemotora Producciones"
+  description="Sunset Experience es el primer evento boutique de Cinemotora Producciones: un recorrido de la última luz del día al punto más alto de la noche."
+>
+  <SiteNav />
+  <main>
+    <Hero />
+    <Concept />
+    <Timeline />
+    <Manifesto />
+    <AccessTiles />
+    <ContactCard email={CONTACT_EMAIL} />
+  </main>
+  <SiteFooter />
+</BaseLayout>

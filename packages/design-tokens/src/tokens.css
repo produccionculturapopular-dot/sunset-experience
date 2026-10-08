@@ -1,0 +1,24 @@
+/*
+  Sunset Experience — design tokens
+  Single dark theme, one locked ember accent. Do not introduce a second
+  accent color or a light-mode variant without updating this file and the
+  Tailwind preset together.
+*/
+:root {
+  color-scheme: dark;
+
+  --bg: #121013;
+  --bg-raised: #19161a;
+  --bg-core: #221c21;
+  --fg: #f3ece7;
+  --fg-muted: #ab9fa4;
+  --accent: #e8702f;
+  --accent-text: #ffa36a;
+  --ink: #1c130f;
+  --night: #342a46;
+  --line: rgba(243, 236, 231, 0.1);
+  --line-strong: rgba(243, 236, 231, 0.22);
+
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+}

@@ -1,0 +1,70 @@
+---
+import DoubleBezel from "@sunset/ui/DoubleBezel.astro";
+
+const tiles = [
+  { tag: "General", title: "Escalonado", copy: "Entra antes, paga menos. Boletería por tramos." },
+  { tag: "VIP", title: "Servicio propio", copy: "Un servicio pensado aparte, no solo mejor ubicación." }
+];
+---
+<section class="acceso wrap">
+  <div class="section-head reveal">
+    <h2>Acceso</h2>
+  </div>
+  <div class="tiles">
+    {tiles.map((tile) => (
+      <div class="reveal">
+        <DoubleBezel coreClass="tile-core">
+          <span class="tag">{tile.tag}</span>
+          <h3>{tile.title}</h3>
+          <p>{tile.copy}</p>
+        </DoubleBezel>
+      </div>
+    ))}
+  </div>
+  <p class="access-note reveal">Precio, aforo y fecha se confirman antes de abrir venta.</p>
+</section>
+
+<style>
+  .section-head {
+    max-width: 56ch;
+    margin-bottom: 28px;
+  }
+  .section-head h2 {
+    font-size: clamp(24px, 3vw, 32px);
+  }
+  .tiles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .tile-core {
+    padding: 28px 24px;
+  }
+  .tile-core .tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent-text);
+    margin-bottom: 10px;
+  }
+  .tile-core h3 {
+    font-size: 20px;
+  }
+  .tile-core p {
+    margin-top: 8px;
+    color: var(--fg-muted);
+    font-size: 14.5px;
+  }
+  .access-note {
+    margin-top: 20px;
+    color: var(--fg-muted);
+    font-size: 14px;
+  }
+  @media (max-width: 760px) {
+    .tiles {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

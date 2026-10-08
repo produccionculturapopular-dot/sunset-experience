@@ -1,0 +1,76 @@
+---
+import Button from "@sunset/ui/Button.astro";
+---
+<section class="hero wrap">
+  <div class="hero-copy">
+    <h1>De la última luz del día al punto más alto de la noche.</h1>
+    <p>
+      Sunset Experience es el primer evento boutique de Cinemotora
+      Producciones, pensado como un recorrido y no una fiesta más.
+    </p>
+    <div class="hero-actions">
+      <Button href="#contacto">Avísame primero</Button>
+    </div>
+  </div>
+  <div class="hero-visual" aria-hidden="true">
+    <svg viewBox="0 0 440 340" role="img">
+      <defs>
+        <linearGradient id="arcGrad" x1="30" y1="260" x2="400" y2="60" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#e8702f"></stop>
+          <stop offset="0.55" stop-color="#b85a3a"></stop>
+          <stop offset="1" stop-color="#342a46"></stop>
+        </linearGradient>
+      </defs>
+      <line x1="20" y1="268" x2="420" y2="268" stroke="rgba(243,236,231,0.14)" stroke-width="1"></line>
+      <path d="M34 258 C 110 70, 300 50, 406 150" fill="none" stroke="url(#arcGrad)" stroke-width="2.5" stroke-linecap="round"></path>
+      <circle cx="34" cy="258" r="7" fill="#e8702f"></circle>
+      <circle cx="150" cy="118" r="5.5" fill="#cf6a37"></circle>
+      <circle cx="300" cy="70" r="4.5" fill="#8c5a56"></circle>
+      <circle cx="406" cy="150" r="4" fill="#342a46"></circle>
+    </svg>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(32px, 6vw, 96px) 56px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 32px;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-copy h1 {
+    font-size: clamp(32px, 4.6vw, 52px);
+    line-height: 1.08;
+  }
+  .hero-copy p {
+    margin-top: 18px;
+    max-width: 44ch;
+    color: var(--fg-muted);
+    font-size: 17px;
+  }
+  .hero-actions {
+    margin-top: 30px;
+  }
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+  }
+  .hero-visual svg {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+  }
+  @media (max-width: 760px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+    .hero-visual {
+      order: -1;
+    }
+    .hero-visual svg {
+      max-width: 280px;
+    }
+  }
+</style>

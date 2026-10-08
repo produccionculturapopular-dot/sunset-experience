@@ -1,0 +1,32 @@
+---
+// Shared "double-bezel" nested card: an outer shell (bg-raised) holding an
+// inner core (bg-core) with a hairline inset highlight. Used by the access
+// tiles and the contact card so the pattern stays in exactly one place.
+interface Props {
+  class?: string;
+  coreClass?: string;
+}
+const { class: shellClass = "", coreClass = "" } = Astro.props;
+---
+
+<div class:list={["bezel-shell", shellClass]}>
+  <div class:list={["bezel-core", coreClass]}>
+    <slot />
+  </div>
+</div>
+
+<style>
+  .bezel-shell {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    padding: 8px;
+    height: 100%;
+  }
+  .bezel-core {
+    background: var(--bg-core);
+    border-radius: 22px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    height: 100%;
+  }
+</style>

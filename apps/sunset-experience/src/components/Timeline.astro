@@ -1,0 +1,83 @@
+---
+const stages = [
+  { name: "Sunset", color: "#e8702f", copy: "Apertura en calma. Luz natural, coctelería y un primer set que no corre." },
+  { name: "Golden Hour", color: "#cf6a37", copy: "La luz cambia y el set sube con ella. La producción empieza a mostrarse." },
+  { name: "Night", color: "#8c5a56", copy: "Sonido, visuales e iluminación en su punto máximo." },
+  { name: "Peak", color: "#342a46", copy: "El momento más alto de la noche, antes de cerrar el círculo." }
+];
+---
+<section class="recorrido wrap">
+  <div class="section-head reveal">
+    <h2>El recorrido</h2>
+  </div>
+  <div class="timeline">
+    {stages.map((stage) => (
+      <div class="stage reveal" style={`--stage-c:${stage.color}`}>
+        <h3>{stage.name}</h3>
+        <p>{stage.copy}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .section-head {
+    max-width: 56ch;
+    margin-bottom: 28px;
+  }
+  .section-head h2 {
+    font-size: clamp(24px, 3vw, 32px);
+  }
+  .timeline {
+    position: relative;
+    margin-top: 40px;
+    padding-left: 28px;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--accent), var(--night));
+    opacity: 0.8;
+  }
+  .stage {
+    position: relative;
+    padding-bottom: 44px;
+  }
+  .stage:last-child {
+    padding-bottom: 0;
+  }
+  .stage::before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 4px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--stage-c, var(--accent));
+    box-shadow: 0 0 0 4px var(--bg);
+  }
+  .stage h3 {
+    font-size: 19px;
+  }
+  .stage p {
+    margin-top: 6px;
+    color: var(--fg-muted);
+    max-width: 46ch;
+    font-size: 15px;
+  }
+  .stage:nth-child(2),
+  .stage:nth-child(4) {
+    margin-left: clamp(0px, 8vw, 96px);
+  }
+  @media (max-width: 760px) {
+    .stage:nth-child(2),
+    .stage:nth-child(4) {
+      margin-left: 0;
+    }
+  }
+</style>

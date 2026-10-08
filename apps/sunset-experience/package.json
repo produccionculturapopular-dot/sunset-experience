@@ -1,0 +1,24 @@
+{
+  "name": "@sunset/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "astro check"
+  },
+  "dependencies": {
+    "@sunset/design-tokens": "workspace:*",
+    "@sunset/ui": "workspace:*",
+    "astro": "^4.16.0",
+    "@fontsource-variable/bricolage-grotesque": "^5.1.0",
+    "@fontsource/hanken-grotesk": "^5.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "tailwindcss": "^4.0.0"
+  }
+}

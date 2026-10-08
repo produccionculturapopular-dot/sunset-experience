@@ -1,0 +1,10 @@
+{
+  "name": "@sunset/design-tokens",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./css": "./src/tokens.css",
+    "./tailwind-preset": "./tailwind-preset.mjs"
+  }
+}

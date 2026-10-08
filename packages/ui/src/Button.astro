@@ -1,0 +1,81 @@
+---
+// Shared CTA button. Two variants: solid (default) and ghost.
+// The nested circular icon ("button-in-button") only renders for the
+// solid variant, matching the original hand-built hero CTA.
+interface Props {
+  href: string;
+  variant?: "solid" | "ghost";
+  class?: string;
+}
+const { href, variant = "solid", class: className = "" } = Astro.props;
+---
+
+<a href={href} class:list={["btn", variant === "ghost" && "btn-ghost", className]}>
+  <slot />
+  {
+    variant === "solid" && (
+      <span class="btn-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h13M13 6l6 6-6 6"></path>
+        </svg>
+      </span>
+    )
+  }
+</a>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 7px 7px 7px 22px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    background: var(--accent);
+    color: var(--ink);
+    transition:
+      transform 0.35s cubic-bezier(0.32, 0.72, 0, 1),
+      box-shadow 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 28px -12px color-mix(in srgb, var(--accent) 60%, transparent);
+    text-decoration: none;
+  }
+  .btn:active {
+    transform: scale(0.98);
+  }
+  .btn-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--ink) 14%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+  .btn:hover .btn-icon {
+    transform: translate(2px, -1px);
+  }
+  .btn-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--fg);
+    padding: 10px 20px;
+  }
+  .btn-ghost:hover {
+    border-color: var(--accent-text);
+    box-shadow: none;
+  }
+</style>

@@ -1,0 +1,131 @@
+---
+import DoubleBezel from "@sunset/ui/DoubleBezel.astro";
+
+interface Props {
+  email: string;
+}
+const { email } = Astro.props;
+---
+<section class="contacto wrap" id="contacto">
+  <div class="section-head reveal">
+    <h2>Avísame primero</h2>
+    <p>Escríbenos y te contamos primero cuándo se confirman fecha, sede y boletería.</p>
+  </div>
+  <div class="reveal">
+    <DoubleBezel shellClass="contact-shell" coreClass="contact-core">
+      <span class="contact-email" id="email">{email}</span>
+      <button class="copy-btn" id="copyBtn" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+          <path d="M4 16V5a1 1 0 0 1 1-1h11"></path>
+        </svg>
+        Copiar correo
+      </button>
+      <span class="copy-feedback" id="copyFeedback" hidden>Copiado</span>
+    </DoubleBezel>
+  </div>
+</section>
+
+<style>
+  .section-head {
+    max-width: 56ch;
+    margin-bottom: 28px;
+  }
+  .section-head h2 {
+    font-size: clamp(24px, 3vw, 32px);
+  }
+  .section-head p {
+    margin-top: 14px;
+    color: var(--fg-muted);
+    max-width: 52ch;
+  }
+  .contact-shell {
+    margin-top: 28px;
+  }
+  .contact-core {
+    padding: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+  }
+  .contact-email {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    user-select: all;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 13px;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--fg);
+    border-radius: 999px;
+    padding: 9px 16px;
+    cursor: pointer;
+    transition:
+      border-color 0.25s,
+      color 0.25s;
+    margin-left: auto;
+  }
+  .copy-btn:hover {
+    border-color: var(--accent-text);
+    color: var(--accent-text);
+  }
+  .copy-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+  .copy-feedback {
+    font-size: 13px;
+    color: var(--accent-text);
+  }
+</style>
+
+<script>
+  // Clipboard copy with a manual-selection fallback for browsers/contexts
+  // where navigator.clipboard is unavailable (e.g. non-HTTPS previews).
+  const btn = document.getElementById("copyBtn");
+  const feedback = document.getElementById("copyFeedback");
+  const emailEl = document.getElementById("email");
+  let timer: ReturnType<typeof setTimeout> | null = null;
+
+  function showFeedback(text: string) {
+    if (!feedback) return;
+    feedback.textContent = text;
+    feedback.hidden = false;
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      feedback.hidden = true;
+    }, 2200);
+  }
+
+  function selectFallback() {
+    if (!emailEl) return;
+    const range = document.createRange();
+    range.selectNodeContents(emailEl);
+    const sel = window.getSelection();
+    sel?.removeAllRanges();
+    sel?.addRange(range);
+    showFeedback("Selecciona y copia");
+  }
+
+  btn?.addEventListener("click", () => {
+    const email = emailEl?.textContent?.trim() ?? "";
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard
+        .writeText(email)
+        .then(() => showFeedback("Copiado"))
+        .catch(selectFallback);
+    } else {
+      selectFallback();
+    }
+  });
+</script>
